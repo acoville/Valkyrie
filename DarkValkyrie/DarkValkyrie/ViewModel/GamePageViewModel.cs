@@ -183,7 +183,7 @@ namespace DarkValkyrie.ViewModel
 
         public GamePageViewModel(bool ResumeGame = false)
         {
-            GameSpeed = 100;
+            GameSpeed = 50;
 
             deviceScreen = new Screen();
 

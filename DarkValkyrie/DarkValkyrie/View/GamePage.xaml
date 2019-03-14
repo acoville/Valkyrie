@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DarkValkyrie"
              xmlns:behaviors="clr-namespace:DarkValkyrie.Behaviors"
+             xmlns:converters="clr-namespace:DarkValkyrie.Converters"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              xmlns:graphics="clr-namespace:DarkValkyrie.Graphics"
-             xmlns:converters="clr-namespace:DarkValkyrie.Converters"
              x:Class="DarkValkyrie.View.GamePage"
              BackgroundImage="test_background.png">
 
@@ -593,5 +593,4 @@
         </Grid>
 
     </ContentPage.Content>
-
 </ContentPage>
