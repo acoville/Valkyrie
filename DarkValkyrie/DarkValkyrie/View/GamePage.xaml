@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DarkValkyrie"
+             xmlns:behaviors="clr-namespace:DarkValkyrie.Behaviors"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:graphics="clr-namespace:DarkValkyrie.Graphics"
+             xmlns:converters="clr-namespace:DarkValkyrie.Converters"
+             x:Class="DarkValkyrie.View.GamePage"
+             BackgroundImage="test_background.png">
+
+    <!-- Resources-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converters:SelectedItemEventArgsToSelectedItemConverter
+                x:Key="SelectedItemConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- Content -->
+
+    <ContentPage.Content>
+
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Canvas-->
+
+            <skia:SKCanvasView 
+                x:Name="SKView"
+                Grid.Row="0"
+                Grid.Column="0"
+                BindingContext="{Binding DeviceScreen}"
+                IsVisible="True">
+
+                <skia:SKCanvasView.Behaviors>
+                    <behaviors:PaintSurfaceCommandBehavior Command="{Binding PaintCommand}" />
+                </skia:SKCanvasView.Behaviors>
+
+            </skia:SKCanvasView>
+
+            <!-- Pause menu-->
+
+            <ContentView
+                x:Name="PauseMenu"
+                BackgroundColor="Black"
+                HeightRequest="100"
+                WidthRequest="150"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsVisible="False"
+                Opacity=".85">
+
+                <StackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    Padding="20">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        TextColor="WhiteSmoke"
+                        HorizontalTextAlignment="Center"
+                        Text="PAUSED" />
+                </StackLayout>
+            </ContentView>
+
+            <!-- Troubleshooting Labels-->
+            <!-- set visible = false in release build-->
+
+            <StackLayout
+                x:Name="Troubleshooting_Layout"
+                Grid.Row="0"
+                Grid.Column="0"
+                IsVisible="False">
+
+                <StackLayout
+                    Orientation="Vertical">
+
+                    <!-- Trouble1 -->
+                    <StackLayout    
+                        Orientation="Horizontal">
+
+                        <Label 
+                            Text="Block: " 
+                            TextColor="WhiteSmoke"/>
+
+                        <Label
+                            Text="{Binding Trouble}" 
+                            TextColor="WhiteSmoke"/>
+
+                    </StackLayout>
+
+                    <!-- Trouble2 -->
+                    <StackLayout
+                        Orientation="Horizontal">
+
+                        <Label
+                            Text="Skia: "
+                            TextColor="WhiteSmoke" />
+
+                        <Label
+                            Text="{Binding Trouble2}"
+                            TextColor="WhiteSmoke"/>
+
+                    </StackLayout>
+
+                    <!-- Trouble3 -->
+
+                    <StackLayout
+                        Orientation="Horizontal">
+
+                        <Label
+                            Text=""
+                            TextColor="WhiteSmoke" />
+
+                        <Label
+                            Text="{Binding Trouble3}"
+                            TextColor="WhiteSmoke"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Second Child-->
+
+            <Grid
+                x:Name="Buttons"
+                Grid.Row="0"
+                Grid.Column="0">
+
+                <Grid.RowDefinitions>
+                    <!--Game screen -->
+                    <RowDefinition Height="*" />
+
+                    <!--Button rows-->
+                    <RowDefinition Height="100" />
+
+                    <!-- Bottom margin-->
+                    <RowDefinition Height="5" />
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+
+                    <!-- Left Margin-->
+                    <ColumnDefinition Width="7" />
+
+                    <!--D-Pad-->
+                    <ColumnDefinition Width="100" />
+
+                    <!--Start Button-->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*" />
+
+                    <!--A Button-->
+                    <ColumnDefinition Width="75" />
+
+                    <!--B Button-->
+                    <ColumnDefinition Width="75" />
+
+                    <!-- right margin-->
+
+                    <ColumnDefinition Width="7" />
+                </Grid.ColumnDefinitions>
+
+                <!-- D-Pad-->
+
+                <Image
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Opacity="{Binding Opacity}"
+                        Source="dpad.png"/>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Up Button-->
+
+                    <ImageButton
+                        x:Name="Up_Btn"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding RightCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Up-Right corner Button-->
+
+                    <ImageButton
+                        x:Name="Up_Right_Btn"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding UpRightCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Right Button -->
+
+                    <ImageButton
+                        x:Name="Right_Btn"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding RightCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Down-Right corner button-->
+
+                    <ImageButton
+                        x:Name="Down_Right_Btn"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding DownRightCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Down Button-->
+
+                    <ImageButton
+                        x:Name="Down_Btn"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding DownCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Down-Left corner button-->
+
+                    <ImageButton
+                        x:Name="Down_Left_Btn"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding DownLeftCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Left Button-->
+
+                    <ImageButton
+                        x:Name="Left_Btn"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding LeftCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+                    <!-- Up-Left corner Button-->
+
+                    <ImageButton
+                        x:Name="Up_Left_Btn"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="Gray">
+
+                        <ImageButton.Behaviors>
+                            <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding UpLeftCommand}" />
+
+                            <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                        </ImageButton.Behaviors>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Opacity"
+                                            Value=".5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </Grid>
+
+                <!-- Start Button-->
+
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Text="PAUSE" 
+                    VerticalOptions="Center"
+                    Opacity="{Binding Opacity}"
+                    BackgroundColor="DarkGray"
+                    Clicked="Button_Clicked_2"/>
+
+                <!-- B Button-->
+
+                <ImageButton
+                    x:Name="B_Btn"
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    Source="bButton.png" 
+                    Aspect="AspectFit"
+                    Opacity="{Binding Opacity}"
+                    VerticalOptions="Center"
+                    CornerRadius="50"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent">
+
+                    <ImageButton.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                                EventName="Pressed"
+                                Command="{Binding BCommand}" />
+
+                        <behaviors:EventToCommandBehavior
+                                EventName="Released"
+                                Command="{Binding NullCommand}" />
+                    </ImageButton.Behaviors>
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+
+                <!-- A Button-->
+
+                <ImageButton
+                    x:Name="A_Btn"
+                    Grid.Row="1"
+                    Grid.Column="6"
+                    Source="aButton.png"
+                    Aspect="AspectFit"
+                    Opacity="{Binding Opacity}"
+                    CornerRadius="50"
+                    VerticalOptions="Center"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    Command="{Binding ACommand}">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                            Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ImageButton>
+            </Grid>
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

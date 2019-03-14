@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Graphics\Characters\Erina\Leather\attack.png" />
+    <None Remove="Graphics\Characters\Erina\Leather\crouching.png" />
+    <None Remove="Graphics\Characters\Erina\Leather\falling.png" />
+    <None Remove="Graphics\Characters\Erina\Leather\standing.png" />
+    <None Remove="Graphics\Monsters\Zombie\crouching.png" />
+    <None Remove="Graphics\Monsters\Zombie\standing.png" />
+    <None Remove="Graphics\Tiles\brick.png" />
+    <None Remove="Graphics\Tiles\grass.png" />
+    <None Remove="Model\ControlProfiles\ErinaProfile.xml" />
+    <None Remove="Model\Maps\TestMap.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Graphics\Characters\Erina\Leather\attack.png" />
+    <EmbeddedResource Include="Graphics\Characters\Erina\Leather\crouching.png" />
+    <EmbeddedResource Include="Graphics\Characters\Erina\Leather\falling.png" />
+    <EmbeddedResource Include="Graphics\Characters\Erina\Leather\standing.png" />
+    <EmbeddedResource Include="Graphics\Monsters\Zombie\crouching.png" />
+    <EmbeddedResource Include="Graphics\Monsters\Zombie\standing.png" />
+    <EmbeddedResource Include="Graphics\Tiles\brick.png" />
+    <EmbeddedResource Include="Graphics\Tiles\grass.png" />
+    <EmbeddedResource Include="Model\ControlProfiles\ErinaProfile.xml" />
+    <EmbeddedResource Include="Model\Maps\TestMap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Valkyrie.CommandInterpreter\Valkyrie.CommandInterpreter.csproj" />
+    <ProjectReference Include="..\..\Valkyrie.GL\Valkyrie.GL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="View\GamePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\OptionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\SplashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

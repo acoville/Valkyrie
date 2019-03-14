@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Level>
+  <Block
+    Label="start"
+    X="5"
+    Y="2"/>
+  
+  <StaticFeatures>
+    
+    <Obstacle
+      Label="floor1"
+      Skin="grass.png"
+      X1="0"
+      X2="29"
+      Y1="1"
+      Y2="1"/>
+
+    <Obstacle
+      Label="wall1"
+      Skin="brick.png"
+      X1="0"
+      X2="0"
+      Y1="2"
+      Y2="6"/>
+
+    <Obstacle
+      Label="wall2"
+      Skin="brick.png"
+      X1="14"
+      X2="14"
+      Y1="2"
+      Y2="6"/>
+
+    <Obstacle
+      Label="Floating1"
+      Skin="brick.png"
+      X1="8"
+      X2="11"
+      Y1="8"
+      Y2="8"/>
+
+    <Obstacle
+      Label="Floating2"
+      Skin="brick.png"
+      X1="3"
+      X2="6"
+      Y1="13"
+      Y2="13"/>
+
+    <Obstacle
+      Label="wall3"
+      Skin="brick.png"
+      X1="22"
+      X2="22"
+      Y1="2"
+      Y2="6"/>
+
+  </StaticFeatures>
+
+  <Monsters>
+    <Monster
+      Name="Zombie1"
+      SpriteSource="Monsters.Zombie"
+      X="3"
+      Y="2"
+      HP="30" 
+      Speed="7"/>
+    
+      <Monster
+      Name="Zombie2"
+      SpriteSource="Monsters.Zombie"
+      X="10"
+      Y="2"
+      HP="30" 
+      Speed="7"/>
+  </Monsters>
+
+  <Gravity
+    Rate="9.8">
+  </Gravity>
+
+  <Background
+    Image="test_background.png">
+  </Background>
+
+  <Meta
+    Height="40"
+    Width="30">
+  </Meta>
+
+  <Block
+    Label="current"
+    X="5"
+    Y="2"/>
+  
+</Level>

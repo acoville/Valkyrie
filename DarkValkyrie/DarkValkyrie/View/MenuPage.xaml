@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DarkValkyrie.View.MenuPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="125" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                   Text="New Game" 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="Newgame_Clicked"/>
+
+                <Button
+                    x:Name="Save_Btn"
+                    Text="Save Game"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    Clicked="Save_Clicked"/>
+
+                <Button 
+                    x:Name="Continue_Btn"
+                    Text="Continue" 
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    Clicked="Continue_Clicked"/>
+
+                <Button 
+                    x:Name="Options_Btn"
+                    Text="Options" 
+                    Grid.Row="4" 
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    Clicked="Options_Clicked"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

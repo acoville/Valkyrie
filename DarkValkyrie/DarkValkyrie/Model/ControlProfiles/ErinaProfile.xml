@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ArrayOfSpecial
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <Special
+    Title="Jump"
+    Input="A">
+  </Special>
+
+  <Special
+  Title="Attack"
+  Input="B">
+  </Special>
+
+  <Special
+    Title="SpearToss"
+    Input="D, DR, R+B">
+  </Special>
+
+  <Special
+    Title="Uppercut"
+    Input="R, D, DR, R+B">
+  </Special>
+
+  <Special
+    Title="Dash"
+    Input="R, R">
+  </Special>
+
+  <Special
+    Title="DoubleJump"
+    Input="A, A">
+  </Special>
+
+  <Special
+    Title="DiveAttack"
+    Input="D+B">
+  </Special>
+  
+</ArrayOfSpecial>
