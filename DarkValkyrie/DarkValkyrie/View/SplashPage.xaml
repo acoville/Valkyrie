@@ -5,6 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Image
+                x:Name="ImageTag"
                 Source="splash1.jpg" />
         </StackLayout>
     </ContentPage.Content>
