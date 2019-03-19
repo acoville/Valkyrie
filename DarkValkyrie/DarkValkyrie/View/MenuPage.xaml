@@ -5,19 +5,23 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Grid Padding="15">
+            <Grid 
+                x:Name="ButtonsGrid"
+                Padding="15"
+                Margin="0, 0, 0, 0">
+                
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="300" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="125" />
-                    <ColumnDefinition Width="10" />
+                    
                 </Grid.ColumnDefinitions>
 
                 <Button
@@ -49,6 +53,7 @@
                     Grid.Column="1"
                     IsEnabled="False"
                     Clicked="Options_Clicked"/>
+                
             </Grid>
         </StackLayout>
     </ContentPage.Content>

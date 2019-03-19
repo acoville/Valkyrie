@@ -3,11 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+/*===========================================================
+ * 
+ *  Adam Coville    
+ *  adam.coville@gmail.com  
+ *  
+ *  
+ *  
+ * =========================================================*/
+
 namespace DarkValkyrie.ViewModel
 {
     public class MenuPageViewModel
     {
         internal Screen deviceScreen;
+
+        //------------------------------------------------
 
         public Screen DeviceScreen
         {
@@ -17,6 +28,8 @@ namespace DarkValkyrie.ViewModel
             }
         }
 
+        //------------------------------------------------
+
         public Screen.Orientation Orientation
         {
             get
@@ -25,6 +38,21 @@ namespace DarkValkyrie.ViewModel
             }
         }
 
+        //------------------------------------------------
+
+        internal int buttonHeight;
+        public int ButtonHeight
+        {
+            get
+            {
+                return buttonHeight;
+            }
+            set
+            {
+                buttonHeight = value;
+            }
+        }
+        
         //=======================================================
 
         /*-------------------------------
@@ -36,6 +64,7 @@ namespace DarkValkyrie.ViewModel
         public MenuPageViewModel()
         {
             deviceScreen = new Screen();
+            ButtonHeight = (int)deviceScreen.Height / 4;
         }
 
         //=========================================================
@@ -54,13 +83,21 @@ namespace DarkValkyrie.ViewModel
             //-- landscape orientation
 
             if (deviceScreen.ScreenOrientation == Screen.Orientation.landscape)
+            {
                 return "menu_landscape.png";
 
+            }
+
+            //------------------------------------------------
             //--- portrait orientation
 
             else if (deviceScreen.ScreenOrientation == Screen.Orientation.portrait)
+            {
                 return "menu_portrait.png";
 
+            }
+
+            //------------------------------------------------
             //-- square orientation
 
             else

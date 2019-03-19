@@ -50,6 +50,8 @@ namespace DarkValkyrie.View
 
             BackgroundImage = vms.GetImageSource();
 
+            vms.ButtonHeight = (int)vms.DeviceScreen.Height / 4;
+
             base.OnSizeAllocated(width, height);
         }
 
