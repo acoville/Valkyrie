@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Xamarin.Forms;
 
 /*=======================================================================
@@ -31,9 +29,6 @@ David Britch
 * adam.coville@gmail.com
 * Upsilled ICT_CIV_PROG_201810 
 * Mobile Project
-* 
-* Pluralsight "Building Your First Mobile Application"
-* by Jesse Liberty
 * 
 * =================================================*/
 

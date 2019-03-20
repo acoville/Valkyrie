@@ -2,14 +2,7 @@
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using SkiaSharp;
-using SkiaSharp.Views.Forms;
 using System;
-using Valkyrie.GL;
-using DarkValkyrie.Graphics;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 /*============================================================================
  * 
@@ -18,12 +11,14 @@ using System.ComponentModel;
  * 
  * Upskilled ICT401515 / Core Infrastructure Mobile Project
  * 
+ * GamePage represents an instance of a game. 
+ * 
  * =========================================================================*/
 
 namespace DarkValkyrie.View
 {
     delegate void RedrawHandler();
-
+    
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage
     {
@@ -91,6 +86,13 @@ namespace DarkValkyrie.View
         }
 
         //===========================================================
+
+        /*-------------------------------------------
+         * 
+         * Pause the game if player backs out to 
+         * main menu
+         * 
+         * -----------------------------------------*/
 
         protected override void OnDisappearing()
         {
@@ -173,25 +175,17 @@ namespace DarkValkyrie.View
             }
         }
 
-        //=================================================================
+        //==================================================================
 
-        //-----------------------------------------------------
-        // wish I could find where to get rid of the 
-        // auto-generated code linking to these...
+        /*-----------------------------------
+         * 
+         * Main Menu Button in the Pause Menu
+         * 
+         * --------------------------------*/
 
-        //private void Button_Clicked(object sender, System.EventArgs e)
-        //{
-
-        //}
-
-        //private void Button_Clicked_3(object sender, System.EventArgs e)
-        //{
-
-        //}
-
-        //private void Button_Clicked_1(object sender, System.EventArgs e)
-        //{
-
-        //}
+        private void Button_Pressed(object sender, EventArgs e)
+        {
+            //Navigation.PushAsync(new OptionsPage(this.gpvm, this));
+        }
     }
 }

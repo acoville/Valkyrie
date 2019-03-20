@@ -8,7 +8,7 @@ using System.Text;
  *  Adam Coville    
  *  adam.coville@gmail.com  
  *  
- *  
+ *  MenuPage View Model
  *  
  * =========================================================*/
 

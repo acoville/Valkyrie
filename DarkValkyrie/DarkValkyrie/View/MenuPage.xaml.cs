@@ -1,9 +1,5 @@
 ﻿using DarkValkyrie.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +11,9 @@ using Xamarin.Forms.Xaml;
  * 
  *  Upskilled ICT401515 / Core Infrastructure Mobile Project
  * 
+ * The Menu Page is where the user starts or continues a game
+ * and navigates to the options menu
+ * 
  * ==========================================================*/
 
 namespace DarkValkyrie.View
@@ -24,7 +23,17 @@ namespace DarkValkyrie.View
 	{
         MenuPageViewModel vms;
 
+        OptionsPage _options;
+
         internal GamePage currentGame;
+
+        //==================================================
+
+        /*--------------------------------------
+         * 
+         *  Constructor
+         * 
+         * -----------------------------------*/
 
         public MenuPage()
         {
@@ -55,7 +64,7 @@ namespace DarkValkyrie.View
             base.OnSizeAllocated(width, height);
         }
 
-        //=================================================
+        //========================================================
 
         /*--------------------------
          * 
@@ -70,23 +79,26 @@ namespace DarkValkyrie.View
 
             //-- enable the other buttons
 
-            Save_Btn.IsEnabled = true;
+            //Save_Btn.IsEnabled = true;
             Continue_Btn.IsEnabled = true;
             Options_Btn.IsEnabled = true;
+
+            _options = new OptionsPage(currentGame.gpvm, currentGame);
         }
 
-        //=================================================
+        //========================================================
 
-        /*--------------------------
+        /*-------------------------------------------
          * 
          * Continue Game
          * 
-         * -----------------------*/
+         * resumes the paused game that's already
+         * running.
+         * 
+         * ---------------------------------------*/
 
         private void Continue_Clicked(object sender, EventArgs e)
         {
-            //currentGame = new GamePage(true);
-
             Navigation.PushAsync(currentGame);
         }
 
@@ -100,7 +112,7 @@ namespace DarkValkyrie.View
 
         private void Options_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OptionsPage(currentGame.gpvm, currentGame));
+            Navigation.PushAsync(_options);
         }
 
         //=========================================================

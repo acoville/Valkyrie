@@ -1,8 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DarkValkyrie.Graphics;
 
-using DarkValkyrie.Graphics;
+/*===============================================================
+ * 
+ * Adam Coville
+ * adam.coville@gmail.com
+ * 
+ * UpSkilled ICT_CIV_PROG_201810
+ * Mobile Project
+ * 
+ * SplashPage View Model class
+ * 
+ * =============================================================*/
 
 namespace DarkValkyrie.ViewModel
 {
@@ -10,6 +18,14 @@ namespace DarkValkyrie.ViewModel
     {
         internal Screen deviceScreen;
         internal Screen.Orientation orientation;
+
+        //=================================================
+
+        /*--------------------------------
+         * 
+         * Constructor
+         * 
+         * ------------------------------*/
 
         public SplashPageViewModel()
         {

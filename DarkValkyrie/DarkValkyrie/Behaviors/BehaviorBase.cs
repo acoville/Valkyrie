@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
-/*==============================================
+/*====================================================================================
  * 
+ * Adam Coville
+ * adam.coville@gmail.com
  * 
+ * UpSkilled ICT401515 / Core Infrastructure Mobile Project
  * 
+ * credit to David Britch
+ * https://developer.xamarin.com/samples/xamarin-forms/behaviors/eventtocommandbehavior/
  * 
- * ===========================================*/
+ * =================================================================================*/
 
 namespace DarkValkyrie.Behaviors
 {

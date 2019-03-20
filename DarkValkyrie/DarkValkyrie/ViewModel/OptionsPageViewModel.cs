@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DarkValkyrie.Graphics;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 /*=======================================================
  * 
@@ -11,12 +9,37 @@ using System.Text;
  * Upsilled ICT_CIV_PROG_201810 
  * Mobile Project
  * 
+ * OptionsPageViewModel
+ * 
  * ====================================================*/
 
 namespace DarkValkyrie.ViewModel
 {
     public class OptionsPageViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        internal Screen deviceScreen;
+
+        public string ImageSource { get; set; }
+
+        //---------------------------------------------------
+
+        internal string positionsEnabled;
+        public string PositionsEnabled
+        {
+            get
+            {
+                return positionsEnabled;
+            }
+            set
+            {
+                positionsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+        //--------------------------------------------------
+
         internal string linesEnabled;
         public string LinesEnabled
         {
@@ -31,17 +54,65 @@ namespace DarkValkyrie.ViewModel
             }
         }
 
+        //====================================================================
+
+        /*-----------------------------------
+         * 
+         * Constructor 
+         * 
+         * ---------------------------------*/
+
         public OptionsPageViewModel()
         {
+            deviceScreen = new Screen();
+
+            GetImageSource();
+
             LinesEnabled = "OFF";
-
-
+            PositionsEnabled = "OFF";
         }
 
-        //=================================================================
+        //====================================================================
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /*-----------------------------------
+         * 
+         * Get Image Source
+         * 
+         * Helper function to determine which 
+         * image is appropriate based on the 
+         * device's native display and 
+         * orientation
+         * 
+         * ---------------------------------*/
 
+        public string GetImageSource()
+        {
+            //-- landscape orientation
+
+            if (deviceScreen.ScreenOrientation == Screen.Orientation.landscape)
+            {
+                return "menu_landscape.png";
+
+            }
+
+            //------------------------------------------------
+            //--- portrait orientation
+
+            else if (deviceScreen.ScreenOrientation == Screen.Orientation.portrait)
+            {
+                return "menu_portrait.png";
+
+            }
+
+            //------------------------------------------------
+            //-- square orientation
+
+            else
+            {
+                return "menu_square.png";
+            }
+        }
+        
         //=================================================================
 
         /*------------------------------------------

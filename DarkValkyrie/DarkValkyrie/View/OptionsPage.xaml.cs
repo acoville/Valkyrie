@@ -1,9 +1,6 @@
-﻿using DarkValkyrie.ViewModel;
+﻿using DarkValkyrie.Graphics;
+using DarkValkyrie.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,12 +21,15 @@ using Xamarin.Forms.Xaml;
 
 namespace DarkValkyrie.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class OptionsPage : ContentPage
 	{
+        internal OptionsPageViewModel ovm;
+        //internal Screen deviceScreen;
+
         internal bool ShowGrid;
         internal bool Positions;
-
+        
         GamePageViewModel GPVM;
         GamePage CurrentGame;
 
@@ -43,8 +43,15 @@ namespace DarkValkyrie.View
 
         public OptionsPage(GamePageViewModel gpvm, GamePage current_game)
         {
+            ovm = new OptionsPageViewModel();
+            ovm.deviceScreen = new Screen();
+
+            BackgroundImage = ovm.GetImageSource();
+
             InitializeComponent();
-            BindingContext = gpvm;
+            //BindingContext = gpvm;
+
+            BindingContext = ovm;
 
             GPVM = gpvm;
             CurrentGame = current_game;
@@ -57,8 +64,7 @@ namespace DarkValkyrie.View
 
         /*------------------------------
          * 
-         * Turn vertical tracking lines 
-         * on or off
+         * Turn grid on or off
          * 
          * ----------------------------*/
 
@@ -71,6 +77,7 @@ namespace DarkValkyrie.View
             if (ShowGrid)
             {
                 ShowGrid = false;
+                ovm.LinesEnabled = "OFF";
             }
 
             //-- otherwise turn on 
@@ -78,9 +85,26 @@ namespace DarkValkyrie.View
             else
             {
                 ShowGrid = true;
+                ovm.LinesEnabled = "ON";
             }
 
             GPVM.deviceScreen.ShowGrid = ShowGrid;
+        }
+
+        //================================================================
+
+        /*----------------------------------
+         * 
+         * OnSizeAllocated override
+         * 
+         * -------------------------------*/
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            ovm.deviceScreen.GetScreenDetails();
+            BackgroundImage = ovm.GetImageSource();
+
+            base.OnSizeAllocated(width, height);
         }
 
         //================================================================
@@ -96,15 +120,22 @@ namespace DarkValkyrie.View
         {
             Positions = GPVM.Trouble_Visible;
 
+            //-- if positions are on, turn them off
+
             if (Positions)
             {
                 Positions = false;
-                CurrentGame.Trouble_Visible = true;
+                CurrentGame.Trouble_Visible = false;
+                ovm.PositionsEnabled = "OFF";
             }
+
+            //-- if they are off, turn them on 
+
             else
             {
                 Positions = true;
                 CurrentGame.Trouble_Visible = true;
+                ovm.PositionsEnabled = "ON";
             }
 
             GPVM.Trouble_Visible = Positions;

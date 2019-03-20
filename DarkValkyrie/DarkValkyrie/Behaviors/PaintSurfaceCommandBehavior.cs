@@ -1,11 +1,14 @@
 ﻿using SkiaSharp.Views.Forms;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-/*========================================================
+/*=========================================================================
+ * 
+ * Adam Coville
+ * adam.coville@gmail.com
+ * 
+ * Upskilled ICT401515 / Core Infrastructure Mobile Project
  * 
  * Credit to 
  * Matthew Leibowitz
@@ -13,7 +16,7 @@ using Xamarin.Forms;
  * 
  * https://dotnetdevaddict.co.za/2017/07/13/turning-events-into-commands/
  * 
- * ===================================================*/
+ * =======================================================================*/
 
 namespace DarkValkyrie.Behaviors
 {

@@ -1,11 +1,23 @@
 ﻿using SkiaSharp;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 
 using Valkyrie.GL;
+
+/*===========================================================
+ * 
+ * Adam Coville
+ * adam.coville@gmail.com
+ * 
+ * UpSkilled ICT401515 / Core Infrastructure Mobile Project
+ * 
+ * Sprite Class
+ * a dynamic collection of 2d images and associated transform
+ * functions that represents an actor (player or computer
+ * controlled) visually on-screen
+ * 
+ * =========================================================*/
 
 namespace DarkValkyrie.Graphics
 {

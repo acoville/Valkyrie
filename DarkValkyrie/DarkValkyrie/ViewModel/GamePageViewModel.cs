@@ -217,7 +217,7 @@ namespace DarkValkyrie.ViewModel
 
             //-- motion characteristics
 
-            player1.MaxJumps = 2;       // enables doublejump
+            player1.MaxJumps = 1;       // 2 enables doublejump
             player1.Max_X_Speed = 12;
 
             //-- set up player1 in the display handler
@@ -902,7 +902,7 @@ namespace DarkValkyrie.ViewModel
 
                             sprite._Status = Status.falling;
 
-                            //actor.CurrentJumps++;
+                            actor.CurrentJumps++;
                         }
 
                         break;
