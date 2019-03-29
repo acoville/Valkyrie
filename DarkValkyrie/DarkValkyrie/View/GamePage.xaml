@@ -86,7 +86,7 @@
                 x:Name="Troubleshooting_Layout"
                 Grid.Row="0"
                 Grid.Column="0"
-                IsVisible="False">
+                IsVisible="{Binding Trouble_Visible}">
 
                 <StackLayout
                     Orientation="Vertical">

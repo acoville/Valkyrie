@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 
 /*============================================================
  * 
@@ -84,6 +85,22 @@ namespace Valkyrie.GL
                       + ", Y: " + Y;
 
             return result;
+        }
+
+        //===========================================================
+
+        public string ToXml()
+        {
+            string text;
+
+            text = "<Block" + Environment.NewLine;
+            text += "Label=\"" + Label + "\""   + Environment.NewLine;
+            text += "X=\"" + X + "\""           +Environment.NewLine;
+            text += "Y=\"" + Y + "\" />"        + Environment.NewLine;
+
+            text += Environment.NewLine;
+
+            return text;
         }
 
         //===========================================================

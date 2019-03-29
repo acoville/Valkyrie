@@ -1,8 +1,9 @@
 ﻿using DarkValkyrie.Graphics;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Xamarin.Essentials;
 
-/*=======================================================
+/*==========================================================
  * 
  * Adam Coville
  * adam.coville@gmail.com
@@ -11,7 +12,7 @@ using System.Runtime.CompilerServices;
  * 
  * OptionsPageViewModel
  * 
- * ====================================================*/
+ * =======================================================*/
 
 namespace DarkValkyrie.ViewModel
 {
@@ -23,33 +24,56 @@ namespace DarkValkyrie.ViewModel
 
         public string ImageSource { get; set; }
 
-        //---------------------------------------------------
+        //=====================================================================
 
-        internal string positionsEnabled;
+        /*--------------------------------------
+         * 
+         *  PositionsEnabled will display
+         *  player 1's Skia position data and 
+         *  Block position data
+         * 
+         * ------------------------------------*/
+
         public string PositionsEnabled
         {
             get
             {
-                return positionsEnabled;
+                return Preferences.Get("positionsEnabled", "OFF");
             }
             set
             {
-                positionsEnabled = value;
+                if (Preferences.Get("positionsEnabled", "OFF") == value)
+                    return;
+
+                Preferences.Set("positionsEnabled", value);
                 RaisePropertyChanged();
             }
         }
-        //--------------------------------------------------
 
-        internal string linesEnabled;
+        //=====================================================================
+
+        /*----------------------------------------
+         * 
+         *  linesEnabled will show the GameLogic
+         *  grid
+         * 
+         * --------------------------------------*/
+
         public string LinesEnabled
         {
             get
             {
-                return linesEnabled;
+                return Preferences.Get("linesEnabled", "OFF");
             }
+
+            //-------------------------------------------
+
             set
             {
-                linesEnabled = value;
+                if(Preferences.Get("linesEnabled", "OFF") == value)
+                    return;
+
+                Preferences.Set("linesEnabled", value);
                 RaisePropertyChanged();
             }
         }
@@ -65,16 +89,12 @@ namespace DarkValkyrie.ViewModel
         public OptionsPageViewModel()
         {
             deviceScreen = new Screen();
-
             GetImageSource();
-
-            LinesEnabled = "OFF";
-            PositionsEnabled = "OFF";
         }
 
         //====================================================================
 
-        /*-----------------------------------
+        /*-------------------------------------
          * 
          * Get Image Source
          * 
@@ -83,34 +103,25 @@ namespace DarkValkyrie.ViewModel
          * device's native display and 
          * orientation
          * 
-         * ---------------------------------*/
+         * -----------------------------------*/
 
         public string GetImageSource()
         {
             //-- landscape orientation
 
             if (deviceScreen.ScreenOrientation == Screen.Orientation.landscape)
-            {
                 return "menu_landscape.png";
 
-            }
-
-            //------------------------------------------------
-            //--- portrait orientation
+            //-- portrait orientation
 
             else if (deviceScreen.ScreenOrientation == Screen.Orientation.portrait)
-            {
                 return "menu_portrait.png";
 
-            }
 
-            //------------------------------------------------
             //-- square orientation
 
             else
-            {
                 return "menu_square.png";
-            }
         }
         
         //=================================================================

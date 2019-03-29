@@ -140,9 +140,12 @@ namespace Valkyrie.GL
 
         //=================================================================
 
-        //--- Block override
-
-        // I don't think I need this anymore
+        /*--------------------------------------
+         * 
+         * IsOccupied returns TRUE if this
+         * block is part of a static obstacle
+         * 
+         * -----------------------------------*/
 
         public bool IsOccupied(Block b)
         {
@@ -191,6 +194,8 @@ namespace Valkyrie.GL
             XmlNode start = root.ChildNodes[0];
             InitializeStart(start);
 
+            CurrentLocation = StartingLocation;
+
             //-- parse each staticObstacle Child[1]
 
             XmlNode obsRoot = root.ChildNodes[1];
@@ -211,6 +216,15 @@ namespace Valkyrie.GL
             XmlNode metaNode = root.ChildNodes[5];
             InitializeBlocks(metaNode);
         }
+
+        //====================================================================
+
+        /*---------------------------------------
+         * 
+         * Export to Xml creates an XML document
+         * 
+         * 
+         * -------------------------------------*/
 
         //====================================================================
 

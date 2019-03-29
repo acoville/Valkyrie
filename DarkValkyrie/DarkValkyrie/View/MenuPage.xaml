@@ -19,6 +19,7 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -41,10 +42,18 @@
                     IsEnabled="False"
                     Clicked="Save_Clicked"/>
 
+                <Button
+                    x:Name="Load_Btn"
+                    Text="Load Game"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    IsEnabled="{Binding SavedStateExists}"
+                    Clicked="Load_Clicked" />
+
                 <Button 
                     x:Name="Continue_Btn"
                     Text="Continue" 
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"
                     IsEnabled="False"
                     Clicked="Continue_Clicked"/>
@@ -52,7 +61,7 @@
                 <Button 
                     x:Name="Options_Btn"
                     Text="Options" 
-                    Grid.Row="4" 
+                    Grid.Row="5" 
                     Grid.Column="1"
                     IsEnabled="False"
                     Clicked="Options_Clicked"/>

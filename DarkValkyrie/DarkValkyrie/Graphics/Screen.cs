@@ -25,7 +25,28 @@ namespace DarkValkyrie.Graphics
     {
         public Command Redraw { get; set; }
 
-        public bool ShowGrid { get; set; }
+        //=====================================================
+
+        /*-------------------------
+         * 
+         * ShowGrid
+         * 
+         * -----------------------*/
+
+        public bool ShowGrid
+        {
+            get => Preferences.Get("ShowGrid", false);
+
+            //----------------------------------------------
+
+            set
+            {
+                if (ShowGrid == value)
+                    return;
+
+                Preferences.Set("ShowGrid", value);
+            }
+        }
 
         internal bool Initialized;
 

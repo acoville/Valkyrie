@@ -26,25 +26,27 @@ namespace DarkValkyrie.View
 
         public GamePageViewModel gpvm { get; set; }
 
+        //=====================================================
+
+        /*-------------------------------
+         * 
+         * Position data visible
+         * 
+         * ----------------------------*/
+
         public bool Trouble_Visible
         {
             get
             {
-                return gpvm.trouble_visible;
+                return gpvm.Trouble_Visible;
             }
             set
             {
-                gpvm.trouble_visible = value;
+                if (gpvm.Trouble_Visible == value)
+                    return;
 
-                if (Trouble_Visible)
-                {
-                    Troubleshooting_Layout.IsVisible = true;
-                }
-
-                if (!Trouble_Visible)
-                {
-                    Troubleshooting_Layout.IsVisible = false;
-                }
+                gpvm.Trouble_Visible = value;
+                Troubleshooting_Layout.IsVisible = value;
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿using DarkValkyrie.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Xml;
 
 /*===========================================================
  * 
@@ -16,6 +18,25 @@ namespace DarkValkyrie.ViewModel
 {
     public class MenuPageViewModel
     {
+        //------------------------------------------------
+
+        internal bool savedStateExists = false;
+        public bool SavedStateExists
+        {
+            get
+            {
+                string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "save.xml");
+
+                return File.Exists(fileName);
+            }
+            set
+            {
+                savedStateExists = value;
+            }
+        }
+
+        //------------------------------------------------
+
         internal Screen deviceScreen;
 
         //------------------------------------------------
@@ -75,7 +96,6 @@ namespace DarkValkyrie.ViewModel
          * image is appropriate based on the 
          * device's native display and orientation
          * 
-         * 
          * -------------------------------*/
 
         public string GetImageSource()
@@ -85,7 +105,6 @@ namespace DarkValkyrie.ViewModel
             if (deviceScreen.ScreenOrientation == Screen.Orientation.landscape)
             {
                 return "menu_landscape.png";
-
             }
 
             //------------------------------------------------
@@ -94,7 +113,6 @@ namespace DarkValkyrie.ViewModel
             else if (deviceScreen.ScreenOrientation == Screen.Orientation.portrait)
             {
                 return "menu_portrait.png";
-
             }
 
             //------------------------------------------------

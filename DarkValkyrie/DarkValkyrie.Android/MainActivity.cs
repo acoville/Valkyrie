@@ -12,6 +12,8 @@ namespace DarkValkyrie.Droid
     [Activity(Label = "DarkValkyrie", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        //=============================================================
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -19,7 +21,26 @@ namespace DarkValkyrie.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             LoadApplication(new App());
+        }
+
+        //=============================================================
+
+        /*------------------------------------------
+         * 
+         * Code to handle runtime permissions
+         * 
+         * https://blog.xamarin.com/persisting-settings-preferences-mobile-apps-xamarin-essentials/
+         * 
+         * ---------------------------------------*/
+
+        public override void OnRequestPermissionsResult(int requestCode, 
+                                                        string[] permissions, 
+                                                        [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

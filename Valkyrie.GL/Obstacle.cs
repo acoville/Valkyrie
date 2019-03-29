@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 
 /*====================================================
  * 
@@ -38,6 +39,30 @@ namespace Valkyrie.GL
             Visible = true;
             Stationary = true;
             Image = string.Empty;
+        }
+
+        //======================================================
+
+        /*-----------------------------------
+         * 
+         * ToXml()
+         * 
+         * --------------------------------*/
+        
+        public string ToXml()
+        {
+            string output;
+
+            output = "<Obstacle"                        + Environment.NewLine;
+            output += "Label=\"" + label + "\""         + Environment.NewLine;
+            output += "Skin=\"" + ImageSource + "\""    + Environment.NewLine;
+            output += "X1=\"" + LowX + "\""             + Environment.NewLine;
+            output += "X2=\"" + HighX + "\""            + Environment.NewLine;
+            output += "Y1=\"" + LowY + "\""             + Environment.NewLine;
+            output += "Y2=\"" + HighY + "\"/>"          + Environment.NewLine;
+            output += Environment.NewLine;
+
+            return output;
         }
 
         //======================================================

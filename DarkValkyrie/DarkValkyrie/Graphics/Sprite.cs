@@ -238,8 +238,7 @@ namespace DarkValkyrie.Graphics
 
                         _skiaPosition.Y -= (int)deltaY;
                     }
-
-
+                    
                 }
             }
         }
@@ -532,6 +531,11 @@ namespace DarkValkyrie.Graphics
                     if (!fall_loaded)
                     {
                         ErrMsg += "Error, could not load: " + SourceDirectory + ".falling" + Environment.NewLine;
+                    }
+
+                    if (!attack_loaded)
+                    {
+                        ErrMsg += "Error, could not load: " + SourceDirectory + ".attack" + Environment.NewLine;
                     }
                 }
 

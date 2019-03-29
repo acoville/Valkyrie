@@ -1,7 +1,7 @@
 ﻿using DarkValkyrie.Graphics;
 using DarkValkyrie.ViewModel;
 using System;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,8 +25,7 @@ namespace DarkValkyrie.View
 	public partial class OptionsPage : ContentPage
 	{
         internal OptionsPageViewModel ovm;
-        //internal Screen deviceScreen;
-
+        
         internal bool ShowGrid;
         internal bool Positions;
         
@@ -49,17 +48,13 @@ namespace DarkValkyrie.View
             BackgroundImage = ovm.GetImageSource();
 
             InitializeComponent();
-            //BindingContext = gpvm;
-
+        
             BindingContext = ovm;
 
             GPVM = gpvm;
             CurrentGame = current_game;
-
-            ShowGrid = false;
-            Positions = false;
         }
-
+            
         //=============================================================
 
         /*------------------------------
@@ -111,8 +106,7 @@ namespace DarkValkyrie.View
 
         /*---------------------------------
          * 
-         * Turn on debugging information 
-         * about player1 
+         * Turn on position data
          * 
          * ------------------------------*/
 

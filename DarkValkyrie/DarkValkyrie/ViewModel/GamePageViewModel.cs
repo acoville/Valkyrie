@@ -12,6 +12,7 @@ using DarkValkyrie.Graphics;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System;
+using Xamarin.Essentials;
 
 /*================================================================================
  * 
@@ -60,20 +61,21 @@ namespace DarkValkyrie.ViewModel
 
         //---------------- these properties are for troubleshooting only
 
-        internal bool trouble_visible;
         public bool Trouble_Visible
         {
             get
             {
-                return trouble_visible;
+                return Preferences.Get("trouble_visible", false);
             }
 
             set
             {
-                trouble_visible = value;
+                if (Preferences.Get("trouble_visible", false) == value)
+                    return;
+
+                Preferences.Set("trouble_visible", value);
                 RaisePropertyChanged();
             }
-
         }
 
         internal string trouble;
@@ -189,8 +191,15 @@ namespace DarkValkyrie.ViewModel
 
             Actors = new List<Character>();
 
-            MapLoaded = LoadMap("TestMap.xml", ResumeGame);
-
+            if (ResumeGame)
+            {
+                MapLoaded = LoadMap("save.xml", ResumeGame);
+            }
+            else
+            {
+                MapLoaded = LoadMap("TestMap.xml", ResumeGame);
+            }
+            
             Opacity = .85;
 
             SetupPlayer1();
@@ -271,7 +280,7 @@ namespace DarkValkyrie.ViewModel
 
         //===================================================================
 
-        /*----------------------------------------
+        /*------------------------------------------------
          * 
          * Helper function to load the level, 
          * these should be .xml files included 
@@ -279,7 +288,7 @@ namespace DarkValkyrie.ViewModel
          * .NET Standard Library, with the
          * Build Action: Embedded Resource
          * 
-         * --------------------------------------*/
+         * --------------------------------------------*/
 
         public Level level;
         public string MapName { get; set; }
@@ -287,43 +296,44 @@ namespace DarkValkyrie.ViewModel
 
         internal bool LoadMap(string levelName, bool ResumeGame = false)
         {
-            var ResourceID = "DarkValkyrie.Model.Maps." + levelName;
+            XmlDocument _level = new XmlDocument();
 
-            var assembly = GetType().GetTypeInfo().Assembly;
+            //--- if this is resuming the saved game, load that
 
-            using (Stream stream = assembly.GetManifestResourceStream(ResourceID))
+            if (levelName == "save.xml")
             {
-                XmlDocument _level = new XmlDocument();
-                _level.Load(stream);
+                string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "save.xml");
 
-                level = new Level(_level);
+                string fileContents = File.ReadAllText(fileName);
 
-                //-------------- load saved game if requested
-
-                if (ResumeGame)
-                {
-                    XmlNode root = _level.DocumentElement;
-                    for (int i = 0; i < root.ChildNodes.Count; i++)
-                    {
-                        XmlNode resume = root.ChildNodes[i];
-                        if (resume.Attributes["Label"].Value == "current")
-                        {
-                            level.InitializeStart(resume);
-                        }
-                    }
-                }
-
-                BackgroundImage = level.ImageSource;
-
-                AddTiles();
-                AddMonsters();
-
+                _level.LoadXml(fileContents);
             }
+
+            //--- otherwise, load the embedded resource
+
+            else
+            {
+                var ResourceID = "DarkValkyrie.Model.Maps." + levelName;
+                var assembly = GetType().GetTypeInfo().Assembly;
+
+                using (Stream stream = assembly.GetManifestResourceStream(ResourceID))
+                    _level.Load(stream);
+            }
+
+            //--------------- moving on 
+
+            level = new Level(_level);
+
+            //-------------- load saved game if requested
+
+            BackgroundImage = level.ImageSource;
+            AddTiles();
+            AddMonsters();
 
             if (level.StartingLocation.Label == "start")
                 return true;
             else
-                return false;
+                return false;      
         }
 
         //===============================================================
@@ -953,6 +963,8 @@ namespace DarkValkyrie.ViewModel
                 {
                     Trouble = player1.BlockPosition.ToString();
                     Trouble2 = sprite.SkiaPosition.ToString();
+
+                    level.CurrentLocation = actor.BlockPosition;
                 }
 
                 EvaluateVerticalMovement(actor, sprite);
