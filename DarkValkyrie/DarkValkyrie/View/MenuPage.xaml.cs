@@ -43,7 +43,7 @@ namespace DarkValkyrie.View
 
             vms = new MenuPageViewModel();
             BindingContext = vms;
-            BackgroundImage = vms.GetImageSource();
+            BackgroundImageSource = vms.GetImageSource();
         }
 
         //==================================================
@@ -59,7 +59,7 @@ namespace DarkValkyrie.View
         {
             vms.DeviceScreen.GetScreenDetails();
 
-            BackgroundImage = vms.GetImageSource();
+            BackgroundImageSource = vms.GetImageSource();
 
             vms.ButtonHeight = (int)vms.DeviceScreen.Height / 4;
 
@@ -377,15 +377,15 @@ namespace DarkValkyrie.View
             {
                 //-- ignore the player character
 
-                if(actor.Name != "Erina")
+                if(actor.Character.Name != "Erina")
                 {
                     XmlElement actorXML = SaveState.CreateElement("Monster");
-                    actorXML.SetAttribute("Name", actor.Name);
-                    actorXML.SetAttribute("SpriteSource", actor.SpriteSource);
-                    actorXML.SetAttribute("X", actor.BlockPosition.X.ToString());
-                    actorXML.SetAttribute("Y", actor.BlockPosition.Y.ToString());
-                    actorXML.SetAttribute("HP", actor.maxHP.ToString());
-                    actorXML.SetAttribute("Speed", actor.Max_X_Speed.ToString());
+                    actorXML.SetAttribute("Name", actor.Character.Name);
+                    actorXML.SetAttribute("SpriteSource", actor.Character.SpriteSource);
+                    actorXML.SetAttribute("X", actor.Character.BlockPosition.X.ToString());
+                    actorXML.SetAttribute("Y", actor.Character.BlockPosition.Y.ToString());
+                    actorXML.SetAttribute("HP", actor.Character.maxHP.ToString());
+                    actorXML.SetAttribute("Speed", actor.Character.Max_X_Speed.ToString());
 
                     Monsters.AppendChild(actorXML);
                 }

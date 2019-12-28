@@ -59,7 +59,7 @@ namespace DarkValkyrie.ViewModel
 
         //=================================================================
 
-        //---------------- these properties are for troubleshooting only
+        //-- these properties are for troubleshooting only
 
         public bool Trouble_Visible
         {
@@ -172,8 +172,10 @@ namespace DarkValkyrie.ViewModel
 
         //=================================================================
 
-        internal List<Character> Actors;
+        //internal List<Character> Actors;
         internal Character player1;
+
+        internal List<Actor> Actors;
 
         //==========================================================
 
@@ -189,7 +191,7 @@ namespace DarkValkyrie.ViewModel
 
             deviceScreen = new Screen();
 
-            Actors = new List<Character>();
+            Actors = new List<Actor>();
 
             if (ResumeGame)
             {
@@ -229,14 +231,16 @@ namespace DarkValkyrie.ViewModel
             player1.MaxJumps = 1;       // 2 enables doublejump
             player1.Max_X_Speed = 12;
 
-            //-- set up player1 in the display handler
-
             Sprite player1Sprite = new Sprite(player1);
-            deviceScreen.AddCharacter(player1Sprite, ref player1);
 
             //-- set up player1 in the physics handler
 
-            Actors.Add(player1);
+            Actor PL1 = new Actor(player1, player1Sprite);
+            Actors.Add(PL1);
+
+            //-- set up player1 in the display handler
+
+            deviceScreen.AddCharacter(PL1.Sprite, ref player1);
 
             //-- set up control
 
@@ -351,14 +355,16 @@ namespace DarkValkyrie.ViewModel
                 Character mob1 = new Character(level.Monsters[i]);
                 Sprite mob1Sprite = new Sprite(level.Monsters[i]);
 
+                Actor newMob = new Actor(mob1, mob1Sprite);
+
                 //-- add them to the physics handler
 
-                Actors.Add(level.Monsters[i]);
+                Actors.Add(newMob);
 
                 //-- add their sprites to the display handler
 
                 mob1.SpriteIndex = deviceScreen.Sprites.Count;
-                deviceScreen.AddCharacter(mob1Sprite, ref mob1);
+                deviceScreen.AddCharacter(newMob.Sprite, ref mob1);
             }
         }
 
@@ -957,18 +963,20 @@ namespace DarkValkyrie.ViewModel
         {
             foreach (var actor in Actors)
             {
-                Sprite sprite = deviceScreen.Sprites[actor.SpriteIndex];
+                //Sprite sprite = deviceScreen.Sprites[actor.SpriteIndex];
 
-                if (actor.Name == "Erina")
+                Sprite sprite = actor.Sprite;
+
+                if (actor.Character.Name == "Erina")
                 {
                     Trouble = player1.BlockPosition.ToString();
                     Trouble2 = sprite.SkiaPosition.ToString();
 
-                    level.CurrentLocation = actor.BlockPosition;
+                    level.CurrentLocation = actor.Character.BlockPosition;
                 }
 
-                EvaluateVerticalMovement(actor, sprite);
-                EvaluateLateralMovement(actor, sprite);
+                EvaluateVerticalMovement(actor);
+                EvaluateLateralMovement(actor);
             }
 
         }
@@ -982,8 +990,13 @@ namespace DarkValkyrie.ViewModel
          * 
          * -----------------------------------*/
 
-        internal void EvaluateVerticalMovement(Character actor, Sprite sprite)
+        //internal void EvaluateVerticalMovement(Character actor, Sprite sprite)
+        
+        internal void EvaluateVerticalMovement(Actor moving_actor)
         {
+            Sprite sprite = moving_actor.Sprite;
+            Character actor = moving_actor.Character;
+
             //-- translate the sprite vertically
 
             if (actor.Falling)
@@ -1090,8 +1103,13 @@ namespace DarkValkyrie.ViewModel
          * 
          * -----------------------------------*/
 
-        internal void EvaluateLateralMovement(Character actor, Sprite sprite)
+        //internal void EvaluateLateralMovement(Character actor, Sprite sprite)
+        
+        internal void EvaluateLateralMovement(Actor moving_actor)
         {
+            Character actor = moving_actor.Character;
+            Sprite sprite = moving_actor.Sprite;
+
             int X = actor.BlockPosition.X;
             int Y = actor.BlockPosition.Y;
 
@@ -1101,7 +1119,7 @@ namespace DarkValkyrie.ViewModel
             //-- accelerate / decelerate checks
 
             //-- is the playerInput "L" or "R" ? Then accelerate in that direction
-
+            
             if (Math.Abs(actor.xAccelerationRate) > 0)
                 LateralAccelerate(actor);
 
@@ -1208,7 +1226,7 @@ namespace DarkValkyrie.ViewModel
                 }
                 else
                 {
-                    Actors.Remove(actor);
+                    //Actors.Remove(actor);
                 }
             }
             else

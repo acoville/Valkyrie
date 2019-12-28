@@ -45,7 +45,7 @@ namespace DarkValkyrie.View
             ovm = new OptionsPageViewModel();
             ovm.deviceScreen = new Screen();
 
-            BackgroundImage = ovm.GetImageSource();
+            BackgroundImageSource = ovm.GetImageSource();
 
             InitializeComponent();
         
@@ -97,7 +97,7 @@ namespace DarkValkyrie.View
         protected override void OnSizeAllocated(double width, double height)
         {
             ovm.deviceScreen.GetScreenDetails();
-            BackgroundImage = ovm.GetImageSource();
+            BackgroundImageSource = ovm.GetImageSource();
 
             base.OnSizeAllocated(width, height);
         }

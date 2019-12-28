@@ -75,7 +75,7 @@ namespace Valkyrie.GL
 
         //--- Y boundaries
 
-        private int lowY;
+        private int lowY = 0;
         public int LowY
         {
             get
@@ -84,7 +84,7 @@ namespace Valkyrie.GL
             }
         }
 
-        private int highY;
+        private int highY = 0;
         public int HighY
         {
             get

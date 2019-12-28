@@ -1,23 +1,30 @@
 ﻿using DarkValkyrie.ViewModel;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System;
 
 /*============================================================================
  * 
+ * Valkyrie 
+ * 
  * Adam Coville
  * adam.coville@gmail.com
  * 
- * Upskilled ICT401515 / Core Infrastructure Mobile Project
  * 
- * GamePage represents an instance of a game. 
+ * GamePage represents an instance of the game engine.
+ * It will load a map into memory and all the actors, blocks 
+ * and events represented in it, then continue to redraw until 
+ * victory or other conditions force exit / transition.
  * 
  * =========================================================================*/
 
 namespace DarkValkyrie.View
 {
+    // event handler delegates
+
     delegate void RedrawHandler();
+    
+    //========================================================================
     
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GamePage : ContentPage
@@ -28,11 +35,14 @@ namespace DarkValkyrie.View
 
         //=====================================================
 
-        /*-------------------------------
+        /*-----------------------------------
          * 
          * Position data visible
          * 
-         * ----------------------------*/
+         * this is optional debug data to 
+         * assist the developer
+         * 
+         * --------------------------------*/
 
         public bool Trouble_Visible
         {
@@ -52,23 +62,20 @@ namespace DarkValkyrie.View
 
         //===========================================================
 
-        /*----------------------------------------
+        /*-----------------------------------------
          * 
          * Constructor
          * 
          * an optional boolean bit will continue 
          * from the last location 
          * 
-         * -------------------------------------*/
+         * -----------------------------------------*/
 
         public GamePage(bool ResumeGame = false)
         {
             InitializeComponent();
-
             gpvm = new GamePageViewModel(ResumeGame);
-
             BindingContext = gpvm;
-
             RedrawScreen = new RedrawHandler(OnRedraw);
         }
 
@@ -76,8 +83,9 @@ namespace DarkValkyrie.View
 
         /*-----------------------------------------
          * 
-         * Ok, this is working, but in landscape
-         * the results are horrible.
+         * If this is a mobile device and the 
+         * screen rotates, this will call a redraw
+         * to flip between portrait / landscape
          * 
          * ---------------------------------------*/
 
@@ -133,12 +141,12 @@ namespace DarkValkyrie.View
 
         //===========================================================
 
-        /*-------------------------------
+        /*-------------------------------------
          * 
          * Function to call SkiaSharp View's
          * Invalidate Surface ~ 20 fps 
          * 
-         * -----------------------------*/
+         * -----------------------------------*/
 
         public void OnRedraw()
         {
@@ -147,7 +155,7 @@ namespace DarkValkyrie.View
 
         //=============================================================
 
-        /*----------------------------------------------
+        /*------------------------------------------------------
          * 
          * Pause Button Clicked
          * 
@@ -156,7 +164,7 @@ namespace DarkValkyrie.View
          * so to manipulate the pauseMenu XAML tag in the View
          * I have to handle some events here.
          * 
-         * -------------------------------------------*/
+         * ----------------------------------------------------*/
 
         private void Button_Clicked_2(object sender, System.EventArgs e)
         {
@@ -179,11 +187,11 @@ namespace DarkValkyrie.View
 
         //==================================================================
 
-        /*-----------------------------------
+        /*--------------------------------------
          * 
          * Main Menu Button in the Pause Menu
          * 
-         * --------------------------------*/
+         * -------------------------------------*/
 
         private void Button_Pressed(object sender, EventArgs e)
         {
