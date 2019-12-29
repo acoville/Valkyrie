@@ -14,6 +14,7 @@
     <None Remove="Graphics\Characters\Erina\Leather\crouching.png" />
     <None Remove="Graphics\Characters\Erina\Leather\falling.png" />
     <None Remove="Graphics\Characters\Erina\Leather\standing.png" />
+    <None Remove="Graphics\Characters\Erina\Leather\standing_rest1.png" />
     <None Remove="Graphics\Monsters\Zombie\crouching.png" />
     <None Remove="Graphics\Monsters\Zombie\standing.png" />
     <None Remove="Graphics\Tiles\brick.png" />

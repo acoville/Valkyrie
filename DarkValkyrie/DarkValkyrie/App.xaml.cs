@@ -5,11 +5,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 /*=================================================================
- * 
+ *
+ *  This started out as my final project for a Certificate IV 
+ *  in programming from Upskilled. I've decided I'd like to 
+ *  expand it a bit further into at least an interactive demo
+ *  to demonstrate all core concepts as a minimum viable product.
+ *  
+ *  This is an early alpha build, not yet licensed for distribution
+ *  
  * Adam Coville
  * adam.coville@gmail.com
- * Upsilled ICT_CIV_PROG_201810 
- * Mobile Project
  * 
  * App.cs
  * 
@@ -24,11 +29,7 @@ namespace DarkValkyrie
 
         /*----------------------------------------
          * 
-         * App Constructor
-         * 
-         * shows a splash page crediting the 
-         * development team for 3 seconds,
-         * then transitions to main menu
+         * App Entry Point / Constructor
          * 
          * -------------------------------------*/
 

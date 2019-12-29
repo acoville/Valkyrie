@@ -18,15 +18,13 @@ using Valkyrie.GL;
 
 namespace DarkValkyrie.ViewModel
 {
-    //public enum ControlType {player, enemyAI, neutralAI, friendlyAI };
-
     public class Actor
     {
         internal
 
         Character character_;
         Sprite sprite_;
-        //ControlType control_;
+        string control_command_;
 
         //==================================================
 
@@ -39,11 +37,11 @@ namespace DarkValkyrie.ViewModel
          * 
          * ---------------------------------------*/
 
-        public Actor(Character GLchar, Sprite graphicsSprite /*, ControlType playername*/)
+        public Actor(Character GLchar, Sprite graphicsSprite)
         {
             character_ = GLchar;
             sprite_ = graphicsSprite;
-            //control_ = playername;
+            control_command_ = "";
         }
 
         //============================================================================
@@ -73,5 +71,20 @@ namespace DarkValkyrie.ViewModel
                 character_ = value;
             }
         }
+
+        //==========================================================================
+
+        public string Command
+        {
+            get
+            {
+                return control_command_;
+            }
+            set
+            {
+                control_command_ = value;
+            }
+        }
+
     }
 }

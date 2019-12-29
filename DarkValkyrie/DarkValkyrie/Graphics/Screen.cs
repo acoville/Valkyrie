@@ -3,6 +3,7 @@ using SkiaSharp;
 using SkiaSharp.Views.Forms;
 
 using Valkyrie.GL;
+using DarkValkyrie.ViewModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
@@ -145,15 +146,15 @@ namespace DarkValkyrie.Graphics
          * 
          * -----------------------------------------------*/
 
-        public void AddCharacter(Sprite newSprite, ref Character newCharacter)
+        //public void AddCharacter(Sprite newSprite, ref Character newCharacter)
+        
+        public void AddCharacter(Actor newActor)
         {
-            MoveSprite(newSprite, newCharacter.BlockPosition);
+            MoveSprite(newActor.Sprite, newActor.Character.BlockPosition);
+            newActor.Sprite.facing = Facing.right;
 
-            newSprite.facing = Facing.right;
-
-            Sprites.Add(newSprite);
-
-            newCharacter.SpriteIndex = Sprites.Count - 1;
+            Sprites.Add(newActor.Sprite);
+            newActor.Character.SpriteIndex = Sprites.Count - 1;
         }
 
         //==========================================================
@@ -381,6 +382,10 @@ namespace DarkValkyrie.Graphics
         /*---------------------------------------
          * 
          * Event Handler to redraw the screen
+         * 
+         * I need to find a way to cache the 
+         * surface and only redraw what is 
+         * necessary
          * 
          * ------------------------------------*/
 
