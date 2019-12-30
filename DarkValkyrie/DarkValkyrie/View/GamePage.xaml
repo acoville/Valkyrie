@@ -6,7 +6,7 @@
              xmlns:converters="clr-namespace:DarkValkyrie.Converters"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="DarkValkyrie.View.GamePage"
-             BackgroundImage="test_background.png"
+             BackgroundImage="{Binding BackgroundImage}"
              Title="Valkyrie 0.1.3A">
 
     <!-- Resources-->

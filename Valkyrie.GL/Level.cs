@@ -211,6 +211,11 @@ namespace Valkyrie.GL
             XmlNode grav = root.ChildNodes[3];
             InitializeGravity(grav);
 
+            //-- load the background image
+
+            XmlNode Background = root.ChildNodes[4];
+            ImageSource = Background.Attributes[0].Value;
+
             //-- retrieve the height and width, populate the blocks 2d array
 
             XmlNode metaNode = root.ChildNodes[5];
