@@ -1,9 +1,4 @@
-﻿using DarkValkyrie.ViewModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System;
-
-/*============================================================================
+﻿/*============================================================================
  * 
  * Valkyrie 
  * 
@@ -17,6 +12,11 @@ using System;
  * victory or other conditions force exit / transition.
  * 
  * =========================================================================*/
+
+using DarkValkyrie.ViewModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using System;
 
 namespace DarkValkyrie.View
 {

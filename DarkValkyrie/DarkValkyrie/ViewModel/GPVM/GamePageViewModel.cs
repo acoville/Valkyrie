@@ -99,7 +99,6 @@ namespace DarkValkyrie.ViewModel
             deviceScreen_ = new Screen();
             Actors = new List<Actor>();
             GameSpeed = 50;
-            Opacity = 0.85;
 
             if (ResumeGame)
             {
@@ -167,6 +166,5 @@ namespace DarkValkyrie.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(caller));
             }
         }
-
     }
 }

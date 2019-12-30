@@ -1,9 +1,4 @@
-﻿using DarkValkyrie.Graphics;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Xamarin.Essentials;
-
-/*==========================================================
+﻿/*==========================================================
  * 
  * Adam Coville
  * adam.coville@gmail.com
@@ -13,6 +8,11 @@ using Xamarin.Essentials;
  * OptionsPageViewModel
  * 
  * =======================================================*/
+
+using DarkValkyrie.Graphics;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Xamarin.Essentials;
 
 namespace DarkValkyrie.ViewModel
 {

@@ -1,10 +1,4 @@
-﻿using DarkValkyrie.Graphics;
-using DarkValkyrie.ViewModel;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-/*=================================================================
+﻿/*=================================================================
  * 
  * Adam Coville
  * adam.coville@gmail.com
@@ -17,6 +11,12 @@ using Xamarin.Forms.Xaml;
  * and other options here
  * 
  * ===============================================================*/
+
+using DarkValkyrie.Graphics;
+using DarkValkyrie.ViewModel;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace DarkValkyrie.View
 {
@@ -145,7 +145,7 @@ namespace DarkValkyrie.View
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             opacity_ = opacityController.Value;
-            GPVM.Opacity = opacity_;
+            GPVM.controlOpacity = opacity_;
         }
     }
 }

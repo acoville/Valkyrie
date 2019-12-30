@@ -13,6 +13,7 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="150" />
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -122,6 +123,17 @@
                 Text="{Binding Source = {x:Reference opacityController},
                        Path=Value,
                        StringFormat='Opacity: {0:F0}'}"/>
+            
+            <!-- Sample control to see the opacity -->
+
+            <Image
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Opacity="{Binding controlOpacity}"
+                        Source="dpad.png"/>
+
         </Grid>
         
     </ContentPage.Content>

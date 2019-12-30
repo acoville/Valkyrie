@@ -17,7 +17,18 @@ namespace DarkValkyrie.ViewModel
 
         //----------- control buttons opacity
 
-        public double Opacity { get; set; }
+        internal double controlOpacity_ = 0.85;
+        public double controlOpacity
+        {
+            get
+            {
+                return controlOpacity_;
+            }
+            set
+            {
+                controlOpacity_ = value;
+            }
+        }
 
         //----------- background image
 
