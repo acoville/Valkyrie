@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using Valkyrie.GL;
 using DarkValkyrie.Graphics;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace DarkValkyrie.ViewModel
 {
@@ -98,6 +99,7 @@ namespace DarkValkyrie.ViewModel
             deviceScreen_ = new Screen();
             Actors = new List<Actor>();
             GameSpeed = 50;
+            Opacity = 0.85;
 
             if (ResumeGame)
             {

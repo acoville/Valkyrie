@@ -12,12 +12,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="75" />
             </Grid.ColumnDefinitions>
 
             <!-- OPTIONS MENU LABEL -->
@@ -101,6 +102,26 @@
                 TextColor="WhiteSmoke"
                 Text="{Binding PositionsEnabled}" />
 
+            <!-- Opacity Slider -->
+
+            <Slider 
+                    x:Name="opacityController"
+                    Maximum="1.0"
+                    Minimum="0.2"
+                    ValueChanged="Slider_ValueChanged" 
+                    Grid.Row="2"
+                    Grid.Column="1"/>
+
+            <Label
+                x:Name="opacityDisplay"
+                Grid.Row="2"
+                Grid.Column="2"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                TextColor="WhiteSmoke"
+                Text="{Binding Source = {x:Reference opacityController},
+                       Path=Value,
+                       StringFormat='Opacity: {0:F0}'}"/>
         </Grid>
         
     </ContentPage.Content>

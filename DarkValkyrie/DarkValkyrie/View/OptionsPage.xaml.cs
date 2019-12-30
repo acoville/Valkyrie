@@ -1,11 +1,10 @@
 ﻿using DarkValkyrie.Graphics;
 using DarkValkyrie.ViewModel;
 using System;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-/*=============================================================
+/*=================================================================
  * 
  * Adam Coville
  * adam.coville@gmail.com
@@ -17,7 +16,7 @@ using Xamarin.Forms.Xaml;
  * Player will be able to control colors, appearance, difficulty
  * and other options here
  * 
- * ==========================================================*/
+ * ===============================================================*/
 
 namespace DarkValkyrie.View
 {
@@ -25,12 +24,12 @@ namespace DarkValkyrie.View
 	public partial class OptionsPage : ContentPage
 	{
         internal OptionsPageViewModel ovm;
-        
-        internal bool ShowGrid;
-        internal bool Positions;
-        
         GamePageViewModel GPVM;
         GamePage CurrentGame;
+        
+        internal bool showGrid_;
+        internal bool positions_;
+        internal double opacity_ = 0.85;
 
         //=============================================================
 
@@ -67,11 +66,11 @@ namespace DarkValkyrie.View
         {
             //-- if on, turn off
 
-            ShowGrid = GPVM.deviceScreen_.ShowGrid;
+            showGrid_ = GPVM.deviceScreen_.ShowGrid;
 
-            if (ShowGrid)
+            if (showGrid_)
             {
-                ShowGrid = false;
+                showGrid_ = false;
                 ovm.LinesEnabled = "OFF";
             }
 
@@ -79,11 +78,11 @@ namespace DarkValkyrie.View
 
             else
             {
-                ShowGrid = true;
+                showGrid_ = true;
                 ovm.LinesEnabled = "ON";
             }
 
-            GPVM.deviceScreen_.ShowGrid = ShowGrid;
+            GPVM.deviceScreen_.ShowGrid = showGrid_;
         }
 
         //================================================================
@@ -112,13 +111,13 @@ namespace DarkValkyrie.View
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            Positions = GPVM.Trouble_Visible;
+            positions_ = GPVM.Trouble_Visible;
 
             //-- if positions are on, turn them off
 
-            if (Positions)
+            if (positions_)
             {
-                Positions = false;
+                positions_ = false;
                 CurrentGame.Trouble_Visible = false;
                 ovm.PositionsEnabled = "OFF";
             }
@@ -127,12 +126,26 @@ namespace DarkValkyrie.View
 
             else
             {
-                Positions = true;
+                positions_ = true;
                 CurrentGame.Trouble_Visible = true;
                 ovm.PositionsEnabled = "ON";
             }
+            
+            GPVM.Trouble_Visible = positions_;
+        }
 
-            GPVM.Trouble_Visible = Positions;
+        //===========================================================================
+
+        /*-----------------------------------
+         * 
+         * Event Handler for Opacity Slider
+         * 
+         * --------------------------------*/
+
+        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            opacity_ = opacityController.Value;
+            GPVM.Opacity = opacity_;
         }
     }
 }

@@ -80,6 +80,27 @@ namespace DarkValkyrie.ViewModel
 
         //====================================================================
 
+        public double controlOpacity
+        {
+            get
+            {
+                return Preferences.Get("controlOpacity", 0.85);
+            }
+
+            //-----------------------------------
+
+            set
+            {
+                if (Preferences.Get("controlOpacity", 0.85) == value)
+                    return;
+
+                Preferences.Set("Opacity", value);
+                RaisePropertyChanged();
+            }
+        }
+
+        //====================================================================
+
         /*-----------------------------------
          * 
          * Constructor 
@@ -116,7 +137,6 @@ namespace DarkValkyrie.ViewModel
 
             else if (deviceScreen.ScreenOrientation == Screen.Orientation.portrait)
                 return "menu_portrait.png";
-
 
             //-- square orientation
 
