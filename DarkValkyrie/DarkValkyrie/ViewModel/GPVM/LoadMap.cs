@@ -1,11 +1,28 @@
-﻿/*==================================================================
+﻿/*========================================================================
  * 
  *  Game Page View Model 
  *   partial class implementation 
  * 
  *   load map and related helper functions 
- * 
- * ================================================================*/
+ *   
+ *   LoadMap must be invoked passed a mapname as a string argument, 
+ *   this will by default be searching for a matching filename in the 
+ *   "/Model/maps/" directory. 
+ *   
+ *   NOT QUITE WORKING YET
+ *   
+ *   An optional second paramter of type bool will indicate weather
+ *   the player is requesting to restore a save state or not, in 
+ *   which case a ".save.xml" is appended to the map name. 
+ *   
+ *   The boolean return value of LoadMap indicates to the GamePage
+ *   ViewModel that the load was successful, and the game can be started. 
+ *   
+ *   Load Order: 
+ *   
+ *   1- 
+ *   
+ * =======================================================================*/
 
 using System;
 using System.ComponentModel;
@@ -14,49 +31,13 @@ using DarkValkyrie.Graphics;
 using System.Xml;
 using System.IO;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace DarkValkyrie.ViewModel
 {
     public partial class GamePageViewModel : INotifyPropertyChanged
     {
-        public Level level;
-        public string MapName { get; set; }
         public bool MapLoaded { get; set; }
-
-        //===========================================================================
-
-        /*----------------------------------------
-         * 
-         * Helper function to set up player1
-         * 
-         * ------------------------------------*/
-
-        internal void SetupPlayer1()
-        {
-            int X = level.StartingLocation.X;
-            int Y = level.StartingLocation.Y;
-
-            player1 = new Character("Erina", X, Y);
-            player1.SpriteSource = "Characters.Erina.Leather";
-
-            //-- motion characteristics
-
-            player1.MaxJumps = 1;       // 2 enables doublejump
-            player1.Max_X_Speed = 12;
-
-            Sprite player1Sprite = new Sprite(player1);
-
-            //-- set up player1 in the physics handler
-
-            Actor PL1 = new Actor(player1, player1Sprite);
-            Actors.Add(PL1);
-            deviceScreen.AddCharacter(PL1);
-
-            //-- set up control
-
-            ControlProfileLoaded = LoadInputProfile("ErinaProfile.xml");
-            PlayerInputChanged = new InputChangedHandler(OnInputChanged);
-        }
 
         //===========================================================================
 
@@ -71,7 +52,7 @@ namespace DarkValkyrie.ViewModel
          * --------------------------------------------*/
 
         internal bool LoadMap(string levelName, bool ResumeGame = false)
-        {
+        {   
             XmlDocument _level = new XmlDocument();
 
             //--- if this is resuming the saved game, load that
@@ -96,17 +77,53 @@ namespace DarkValkyrie.ViewModel
             }
 
             level = new Level(_level);
-
-            //-------------- load saved game if requested
-
             BackgroundImage = level.ImageSource;
+            
             AddTiles();
+            SetupPlayer1();
             AddMonsters();
+
+            //-- returning a true result of this function will 
+            // allow the game to start
 
             if (level.StartingLocation.Label == "start")
                 return true;
             else
                 return false;
+        }
+        //===========================================================================
+
+        /*----------------------------------------
+         * 
+         * Helper function to set up player1
+         * 
+         * ------------------------------------*/
+
+        internal void SetupPlayer1()
+        {
+            int X = level.StartingLocation.X;
+            int Y = level.StartingLocation.Y;
+
+            player1 = new Character("Erina", X, Y);
+            player1.SpriteSource = "Characters.Erina.Leather";
+
+            //-- motion characteristics
+
+            player1.MaxJumps = 2;       // 2 enables doublejump
+            player1.Max_X_Speed = 12;
+
+            Sprite player1Sprite = new Sprite(player1);
+
+            //-- set up player1 in the physics handler
+
+            Actor PL1 = new Actor(player1, player1Sprite);
+            Actors.Add(PL1);
+            deviceScreen_.AddCharacter(PL1);
+
+            //-- set up control
+
+            ControlProfileLoaded = LoadInputProfile("ErinaProfile.xml");
+            PlayerInputChanged = new InputChangedHandler(OnInputChanged);
         }
 
         //========================================================================
@@ -132,8 +149,8 @@ namespace DarkValkyrie.ViewModel
 
                 //-- add their sprites to the display handler
 
-                mob1.SpriteIndex = deviceScreen.Sprites.Count;
-                deviceScreen.AddCharacter(newMob);
+                mob1.SpriteIndex = deviceScreen_.Sprites.Count;
+                deviceScreen_.AddCharacter(newMob);
             }
         }
 
@@ -159,7 +176,7 @@ namespace DarkValkyrie.ViewModel
 
                         Tile tile = new Tile(o.ImageSource);
 
-                        deviceScreen.AddTile(tile, arg);
+                        deviceScreen_.AddTile(tile, arg);
                     }
                 }
             }

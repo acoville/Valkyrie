@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Valkyrie.GL;
 using DarkValkyrie.Graphics;
 using System.Reflection;
@@ -34,7 +30,7 @@ namespace DarkValkyrie.ViewModel
 
         public void OnInputChanged(Character actor, string e)
         {
-            Sprite sprite = deviceScreen.Sprites[actor.SpriteIndex];
+            Sprite sprite = deviceScreen_.Sprites[actor.SpriteIndex];
 
             switch (e)
             {

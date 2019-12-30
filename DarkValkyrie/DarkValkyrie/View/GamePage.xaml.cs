@@ -92,7 +92,7 @@ namespace DarkValkyrie.View
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-            gpvm.deviceScreen.GetScreenDetails();
+            gpvm.deviceScreen_.GetScreenDetails();
         }
 
         //===========================================================

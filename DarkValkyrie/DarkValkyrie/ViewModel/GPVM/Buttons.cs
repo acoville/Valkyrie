@@ -1,8 +1,5 @@
 ﻿using DarkValkyrie.Graphics;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -32,9 +29,9 @@ namespace DarkValkyrie.ViewModel
                     //-- adjust status if necessary
                     //-- if player is falling, no adjustment will be done yet.
 
-                    if (deviceScreen.Sprites[player1.SpriteIndex]._Status != Status.falling)
+                    if (deviceScreen_.Sprites[player1.SpriteIndex]._Status != Status.falling)
                     {
-                        deviceScreen.Sprites[player1.SpriteIndex]._Status = Status.standing;
+                        deviceScreen_.Sprites[player1.SpriteIndex]._Status = Status.standing;
                     }
 
                     player1.xAccelerationRate = 0;

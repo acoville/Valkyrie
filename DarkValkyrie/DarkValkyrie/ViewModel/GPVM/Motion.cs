@@ -1,8 +1,6 @@
 ﻿using DarkValkyrie.Graphics;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using Valkyrie.GL;
 
 namespace DarkValkyrie.ViewModel
@@ -90,7 +88,7 @@ namespace DarkValkyrie.ViewModel
                         actor.Standing = true;
                         sprite._Status = Status.standing;
 
-                        deviceScreen.MoveSprite(sprite, new Block(X, Y));
+                        deviceScreen_.MoveSprite(sprite, new Block(X, Y));
                     }
 
                     /*---------------------------

@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Level>
-  <Block
+  <Player
     Label="start"
     X="5"
-    Y="2"/>
-  
+    Y="2"
+    Name="Erina"
+    SpriteSource="Characters.Erina.Leather"/>
+
   <StaticFeatures>
     
     <Obstacle

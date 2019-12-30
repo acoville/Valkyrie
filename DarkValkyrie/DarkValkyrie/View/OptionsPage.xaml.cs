@@ -67,7 +67,7 @@ namespace DarkValkyrie.View
         {
             //-- if on, turn off
 
-            ShowGrid = GPVM.deviceScreen.ShowGrid;
+            ShowGrid = GPVM.deviceScreen_.ShowGrid;
 
             if (ShowGrid)
             {
@@ -83,7 +83,7 @@ namespace DarkValkyrie.View
                 ovm.LinesEnabled = "ON";
             }
 
-            GPVM.deviceScreen.ShowGrid = ShowGrid;
+            GPVM.deviceScreen_.ShowGrid = ShowGrid;
         }
 
         //================================================================
