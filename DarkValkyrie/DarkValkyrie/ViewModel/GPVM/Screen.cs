@@ -9,7 +9,6 @@ namespace DarkValkyrie.ViewModel
 
         //------------ screen variables
 
-        internal Screen deviceScreen_;
         public Screen DeviceScreen
         {
             get { return deviceScreen_; }
@@ -17,7 +16,6 @@ namespace DarkValkyrie.ViewModel
 
         //----------- control buttons opacity
 
-        internal double controlOpacity_ = 0.85;
         public double controlOpacity
         {
             get
@@ -27,6 +25,7 @@ namespace DarkValkyrie.ViewModel
             set
             {
                 controlOpacity_ = value;
+                RaisePropertyChanged();
             }
         }
 

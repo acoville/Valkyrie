@@ -145,7 +145,7 @@ namespace DarkValkyrie.View
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             ovm.controlOpacity = opacityController.Value;
-            GPVM.controlOpacity = opacity_;
+            GPVM.controlOpacity = opacityController.Value;
         }
     }
 }

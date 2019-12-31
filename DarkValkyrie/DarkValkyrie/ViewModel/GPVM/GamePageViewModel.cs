@@ -25,7 +25,10 @@ namespace DarkValkyrie.ViewModel
         public Level level;
         internal List<Actor> Actors;
         internal Character player1;
-        
+
+        internal double controlOpacity_ = 0.85;
+        internal Screen deviceScreen_;
+
         //----------------------------------------------------
 
         public event InputChangedHandler PlayerInputChanged;
