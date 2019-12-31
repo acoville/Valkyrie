@@ -29,7 +29,7 @@ namespace DarkValkyrie.View
         
         internal bool showGrid_;
         internal bool positions_;
-        internal double opacity_ = 0.85;
+        internal double opacity_;
 
         //=============================================================
 
@@ -144,7 +144,7 @@ namespace DarkValkyrie.View
 
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            opacity_ = opacityController.Value;
+            ovm.controlOpacity = opacityController.Value;
             GPVM.controlOpacity = opacity_;
         }
     }

@@ -86,15 +86,12 @@ namespace DarkValkyrie.ViewModel
             {
                 return Preferences.Get("controlOpacity", 0.85);
             }
-
-            //-----------------------------------
-
             set
             {
                 if (Preferences.Get("controlOpacity", 0.85) == value)
                     return;
 
-                Preferences.Set("Opacity", value);
+                Preferences.Set("controlOpacity", value);
                 RaisePropertyChanged();
             }
         }
