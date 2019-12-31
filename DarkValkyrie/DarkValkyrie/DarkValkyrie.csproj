@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>One Man Studio</Company>
+    <Authors>Adam Coville adam.coville@gmail.com</Authors>
+    <RepositoryUrl>https://github.com/acoville/DarkValkyrie</RepositoryUrl>
+    <RepositoryType>private</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,9 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
   </ItemGroup>
 
   <ItemGroup>
