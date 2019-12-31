@@ -128,9 +128,7 @@ namespace Valkyrie.GL
 
         /*------------------------------------
          * 
-         * Constructor:
-         * 
-         * character name as a paramter
+         * Constructors:
          *
          * ---------------------------------*/
 
@@ -147,8 +145,23 @@ namespace Valkyrie.GL
             BlockPosition = new Block(0, 0);
             CurrentJumps = 0;
             MaxJumps = 1;
+        }
 
-            //InitializeCollisionZone();
+        //============================================================
+
+        public Character()
+        {
+            Name = "UNKNOWN";
+            HP = 100;
+            maxHP = 100;
+
+            xSpeed = 0;
+            ySpeed = 0;
+            xAccelerationRate = 0;
+            yAccelerationRate = 0;
+            BlockPosition = new Block(0, 0);
+            CurrentJumps = 0;
+            MaxJumps = 1;
         }
 
         //============================================================

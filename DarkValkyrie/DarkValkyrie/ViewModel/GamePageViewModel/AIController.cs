@@ -21,13 +21,16 @@ namespace DarkValkyrie.ViewModel
 
         //======================================================================
 
-        /*-----------------------------------
+        /*------------------------------------------
          * 
-         *  
+         *  As name suggests, this is a 
+         *  basic trash mob AI. It will approach
+         *  and attack the nearest hostile it 
+         *  can see.
          * 
-         * ---------------------------------*/
+         * ----------------------------------------*/
 
-        public void ControlCharacter(Character npc, ref List<Character> actors)
+        public void ControlTrashMob(Character npc, ref List<Character> actors)
         {
             // are there hostiles in area? If yes, 
 
@@ -47,6 +50,7 @@ namespace DarkValkyrie.ViewModel
 
             // if no, do random patrol 
 
+            npc.ControlStatus = "Patrol";
 
         }
 
