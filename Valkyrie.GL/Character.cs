@@ -15,15 +15,22 @@ using System.Xml;
 
 namespace Valkyrie.GL
 {
+    
     public class Character : Region
     {
-        public string Name { get; set; }
+        public enum Team { good, evil };
 
-        //-- motion characteristics
+        public string Name { get; set; }
 
         public Block BlockPosition { get; set; }
 
         //=============================================================
+
+        /*-------------------------------------
+         * 
+         *  Motion Properties
+         * 
+         * -----------------------------------*/
 
         public double xSpeed { get; set; }              // + for right, - for left
         public double ySpeed { get; set; }              // + for up, - for down
@@ -96,9 +103,18 @@ namespace Valkyrie.GL
             }
         }
 
-        //======================================================
+        //===========================================================
+
+        //-- Control variables
+
+        public String ControlStatus { get; set; }
+        public Team Alignment { get; set; }
+
+        //===========================================================
 
         //-- Combat variables
+
+        public int DetectionRange { get; set; }
 
         public int HP { get; private set; }
         public int maxHP { get; set; }
@@ -215,6 +231,7 @@ namespace Valkyrie.GL
 
             //-- combat 
 
+            DetectionRange = Int32.Parse(node.Attributes["DetectionRange"].Value);
             maxHP = Int32.Parse(node.Attributes["HP"].Value);
             HP = maxHP;
 

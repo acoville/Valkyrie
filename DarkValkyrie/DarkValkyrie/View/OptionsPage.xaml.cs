@@ -29,7 +29,7 @@ namespace DarkValkyrie.View
         
         internal bool showGrid_;
         internal bool positions_;
-        internal double opacity_;
+        //internal double opacity_;
 
         //=============================================================
 

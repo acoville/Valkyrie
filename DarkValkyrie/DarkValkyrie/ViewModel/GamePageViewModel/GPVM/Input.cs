@@ -1,30 +1,13 @@
 ﻿using System.ComponentModel;
 using Valkyrie.GL;
 using DarkValkyrie.Graphics;
-using System.Reflection;
-using System.IO;
-using System.Xml;
-using Valkyrie.CommandInterpreter;
 
 namespace DarkValkyrie.ViewModel
 {
     public partial class GamePageViewModel : INotifyPropertyChanged
     {
-        //-- Input variables
-
-        private Interpreter interpretor;
-        public bool ControlProfileLoaded { get; set; }
-
-        //=================================================================
-
-        /*------------------------------------------------
-         * 
-         * OnInputChanged Event Handler
-         * 
-         * Now why.... why isn't the call to the sprites
-         * working?
-         * 
-         * ---------------------------------------------*/
+        // step is the number of pixels one tap of the L/R key move the 
+        // character at walking speed
 
         internal int step = 15;
 
@@ -235,44 +218,6 @@ namespace DarkValkyrie.ViewModel
             }
         }
 
-        //==============================================================================
-
-        /*----------------------------------------
-         * 
-         * FEATURE DELAYED
-         * 
-         * Helper function to load the command 
-         * profile. Profiles should be .xml files
-         * in the /Model/ControlProfiles/ directory
-         * of the SideScroller .NET standard library.
-         * Build action should be: Embedded Resource
-         * 
-         * --------------------------------------*/
-
-        internal bool LoadInputProfile(string ProfileName)
-        {
-            //-- setup the input
-
-            var ResourceID = "DarkValkyrie.Model.ControlProfiles." + ProfileName;
-
-            var assembly = this.GetType().GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream(ResourceID);
-
-            XmlDocument _controlProfile = new XmlDocument();
-            _controlProfile.Load(stream);
-
-            interpretor = new Interpreter(ref _controlProfile);
-
-            PlayerInput = string.Empty;
-
-            //-- test the load
-
-            Special testCommand = new Special();
-            bool test = interpretor.Interpret("A", testCommand);
-
-            return test;
-        }
-
         //============================================================================
 
         /*--------------------------------------------------------
@@ -308,41 +253,5 @@ namespace DarkValkyrie.ViewModel
                 }
             }
         }
-
-        //=============================================================================
-
-        /*-----------------------------
-        * 
-        * FEATURE DELAYED
-        * 
-        * --------------------------*/
-
-        internal Special playerCommand;
-        public Special PlayerCommand
-        {
-            get
-            {
-                return playerCommand;
-            }
-            private set
-            {
-                playerCommand = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        //==================================================================
-
-        /*----------------------------------------
-         * 
-         * FEATURE DELAYED
-         * 
-         * Special Commands are at this point,
-         * something I need to implement later.
-         * 
-         * --------------------------------------*/
-
-
-
     }
 }

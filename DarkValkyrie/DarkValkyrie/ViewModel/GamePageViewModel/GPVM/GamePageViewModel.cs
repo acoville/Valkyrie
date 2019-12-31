@@ -14,7 +14,6 @@ using System.Runtime.CompilerServices;
 using Valkyrie.GL;
 using DarkValkyrie.Graphics;
 using System.Collections.Generic;
-using Xamarin.Essentials;
 
 namespace DarkValkyrie.ViewModel
 {
@@ -29,9 +28,12 @@ namespace DarkValkyrie.ViewModel
         internal double controlOpacity_ = 0.85;
         internal Screen deviceScreen_;
 
+        AIController NPC_AI;
+
         //----------------------------------------------------
 
         public event InputChangedHandler PlayerInputChanged;
+        public event InputChangedHandler NPCInputChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
         //-- Gameplay Control variables
@@ -112,7 +114,7 @@ namespace DarkValkyrie.ViewModel
                 MapLoaded = LoadMap("TestMap.xml", ResumeGame);
             }
  
-            if (MapLoaded && ControlProfileLoaded)
+            if (MapLoaded)
                 StartGame();
         }
 
