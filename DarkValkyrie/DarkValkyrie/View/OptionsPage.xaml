@@ -8,133 +8,145 @@
     <ContentPage.Content>
 
         <Grid>
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="75" />
             </Grid.ColumnDefinitions>
 
             <!-- OPTIONS MENU LABEL -->
 
             <Label
                 HorizontalTextAlignment="Center"
-                Grid.Row="0"
-                Grid.Column="0"
                 Text="OPTIONS"
+                Grid.Column="0"
+                Grid.Row="0"
                 FontAttributes="Bold"
                 TextColor="White"
                 FontSize="Large" />
 
-            <!-- Turn Vertical Lines on / off-->
+            <Grid
+                Grid.Column="0"
+                Grid.Row="1">
 
-            <Button
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Text="Grid"
-                    Clicked="Button_Clicked">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="75" />
+                </Grid.RowDefinitions>
 
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                                            Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                                            Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </Button>
+                <!-- Turn Vertical Lines on / off-->
 
-            <Label
-                Grid.Row="0"
-                Grid.Column="2"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                TextColor="WhiteSmoke"
-                Text="{Binding LinesEnabled}" />
-
-            <!-- Display player's position data-->
-
-            <Button
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="Position Data"
-                    Clicked="Button_Clicked_1">
-
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                                            Value="1" />
-                            </VisualState.Setters>
-                        </VisualState>
-
-                        <VisualState x:Name="Pressed">
-                            <VisualState.Setters>
-                                <Setter Property="Scale"
-                                            Value="0.8" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </Button>
-
-            <Label
-                Grid.Row="1"
-                Grid.Column="2"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                TextColor="WhiteSmoke"
-                Text="{Binding PositionsEnabled}" />
-
-            <!-- Opacity Slider -->
-
-            <Slider 
-                    x:Name="opacityController"
-                    Maximum="1.0"
-                    Minimum="0.2"
-                    ValueChanged="Slider_ValueChanged" 
-                    Grid.Row="2"
-                    Grid.Column="1"/>
-
-            <Label
-                x:Name="opacityDisplay"
-                Grid.Row="2"
-                Grid.Column="2"
-                FontAttributes="Bold"
-                FontSize="Medium"
-                TextColor="WhiteSmoke"
-                Text="{Binding Source = {x:Reference opacityController},
-                       Path=Value,
-                       StringFormat='Opacity: {0:F0}'}"/>
-            
-            <!-- Sample control to see the opacity -->
-
-            <Image
-                        Grid.Row="3"
+                <Button
+                        Grid.Row="0"
                         Grid.Column="1"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        Opacity="{Binding controlOpacity}"
-                        Source="dpad.png"/>
+                        Text="Grid"
+                        Clicked="Button_Clicked">
 
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                                Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                                Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    TextColor="WhiteSmoke"
+                    Text="{Binding LinesEnabled}" />
+
+                <!-- Display player's position data-->
+
+                <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="Position Data"
+                        Clicked="Button_Clicked_1">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                                Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                                Value="0.8" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Button>
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    TextColor="WhiteSmoke"
+                    Text="{Binding PositionsEnabled}" />
+
+                <!-- Opacity Slider -->
+
+                <Slider 
+                        x:Name="opacityController"
+                        Maximum="1.0"
+                        Minimum="0.2"
+                        ValueChanged="Slider_ValueChanged" 
+                        Grid.Row="2"
+                        Grid.Column="1"/>
+
+                <Label
+                    x:Name="opacityDisplay"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    TextColor="WhiteSmoke"
+                    Text="{Binding Source = {x:Reference opacityController},
+                           Path=Value,
+                           StringFormat='Opacity: {0:F0}'}"/>
+
+                <!-- Sample control to see the opacity -->
+
+                <Image
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Opacity="{Binding controlOpacity}"
+                            Source="dpad.png"/>
+
+            </Grid>
         </Grid>
-        
     </ContentPage.Content>
 </ContentPage>
