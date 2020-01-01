@@ -15,15 +15,22 @@ using System.Xml;
 
 namespace Valkyrie.GL
 {
+    
     public class Character : Region
     {
-        public string Name { get; set; }
+        public enum Team { good, evil };
 
-        //-- motion characteristics
+        public string Name { get; set; }
 
         public Block BlockPosition { get; set; }
 
         //=============================================================
+
+        /*-------------------------------------
+         * 
+         *  Motion Properties
+         * 
+         * -----------------------------------*/
 
         public double xSpeed { get; set; }              // + for right, - for left
         public double ySpeed { get; set; }              // + for up, - for down
@@ -96,9 +103,18 @@ namespace Valkyrie.GL
             }
         }
 
-        //======================================================
+        //===========================================================
+
+        //-- Control variables
+
+        public String ControlStatus { get; set; }
+        public Team Alignment { get; set; }
+
+        //===========================================================
 
         //-- Combat variables
+
+        public int DetectionRange { get; set; }
 
         public int HP { get; private set; }
         public int maxHP { get; set; }
@@ -112,9 +128,7 @@ namespace Valkyrie.GL
 
         /*------------------------------------
          * 
-         * Constructor:
-         * 
-         * character name as a paramter
+         * Constructors:
          *
          * ---------------------------------*/
 
@@ -131,8 +145,23 @@ namespace Valkyrie.GL
             BlockPosition = new Block(0, 0);
             CurrentJumps = 0;
             MaxJumps = 1;
+        }
 
-            //InitializeCollisionZone();
+        //============================================================
+
+        public Character()
+        {
+            Name = "UNKNOWN";
+            HP = 100;
+            maxHP = 100;
+
+            xSpeed = 0;
+            ySpeed = 0;
+            xAccelerationRate = 0;
+            yAccelerationRate = 0;
+            BlockPosition = new Block(0, 0);
+            CurrentJumps = 0;
+            MaxJumps = 1;
         }
 
         //============================================================
@@ -215,6 +244,7 @@ namespace Valkyrie.GL
 
             //-- combat 
 
+            DetectionRange = Int32.Parse(node.Attributes["DetectionRange"].Value);
             maxHP = Int32.Parse(node.Attributes["HP"].Value);
             HP = maxHP;
 

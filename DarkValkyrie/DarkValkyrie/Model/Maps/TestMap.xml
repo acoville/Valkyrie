@@ -65,6 +65,7 @@
       SpriteSource="Monsters.Zombie"
       X="3"
       Y="2"
+      DetectionRange="5"
       HP="30" 
       Speed="7"/>
     
@@ -73,6 +74,7 @@
       SpriteSource="Monsters.Zombie"
       X="10"
       Y="2"
+      DetectionRange="5"
       HP="30" 
       Speed="7"/>
   </Monsters>

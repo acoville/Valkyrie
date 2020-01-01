@@ -122,7 +122,8 @@ namespace DarkValkyrie.ViewModel
 
             //-- set up control
 
-            ControlProfileLoaded = LoadInputProfile("ErinaProfile.xml");
+            player1.ControlStatus = "Player Controlled";
+            player1.Alignment = Character.Team.good;
             PlayerInputChanged = new InputChangedHandler(OnInputChanged);
         }
 
@@ -151,6 +152,13 @@ namespace DarkValkyrie.ViewModel
 
                 mob1.SpriteIndex = deviceScreen_.Sprites.Count;
                 deviceScreen_.AddCharacter(newMob);
+
+                //-- set up control
+
+                mob1.ControlStatus = "AI controlled monster NPC";
+                mob1.Alignment = Character.Team.evil;
+                
+                //NPCInputChanged = new InputChangedHandler(OnInputChanged);
             }
         }
 
