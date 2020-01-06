@@ -52,7 +52,7 @@ This project utilizes the SkiaSoft NuGet package to handle native display sizing
 
 #### Graphics.Sprites
 
-* Sprites only need right-facing samples provided, mirroring is handled a built-in mirror function to reduce developer workload. I believe any file format SkiaSoft can render will work but I have used exclusively .PNG sprites with          transparent backgrounds. In the Valkyrie.Graphics project, to add a character simply add a directory named after it in Valkryie.Graphics/Characters. This directory should contain a .png matching the following states: "standing", "falling", "crouching", "attack", "dead". These match the Valkyrie.GL.Character status property of that Actor. If a sprite matching the GL status is found then the Screen object will use it. 
+* Sprites only need right-facing samples provided, mirroring is handled by a built-in function to reduce developer workload. I believe any file format SkiaSoft can render will work but I have used exclusively .PNG sprites as that filetype supports transparent backgrounds. In the Valkyrie.Graphics project, to add a character simply add a directory named after it in Valkryie.Graphics/Characters. This directory should contain a .png matching the following states: "standing", "falling", "crouching", "attack", "dead". These match the Valkyrie.GL.Character status property of that Actor. If a sprite matching the GL status is found then the Screen object will use it. 
 
 #### Graphics.Tile
 
